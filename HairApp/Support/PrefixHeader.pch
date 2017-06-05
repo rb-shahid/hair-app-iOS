@@ -1,0 +1,36 @@
+//
+//  PrefixHeader.pch
+//  Vizzou'
+//
+//  Created by Ashish Kumar Sharma on 04/07/16.
+//  Copyright © 2016 Ashish Kumar Sharma. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <Foundation/Foundation.h>
+#import "AppDelegate.h"
+#import "Config.h"
+#import "UserSession.h"
+#import "AFNetworking.h"
+#import "WebServiceCalls.h"
+#import "Reachability.h"
+#import "SVProgressHUD.h"
+#import "APPhotoLibrary.h"
+#import "UserSession.h"
+#import "HeaderView.h"
+#import "TPKeyboardAvoidingScrollView.h"
+#import "LoginVC.h"
+#import "RegisterVC.h"
+#import "MenuView.h"
+#import "EdutationVC.h"
+#import "AboutusVC.h"
+#import "ContactusVC.h"
+#import "ConsoltationVC.h"
+#import "LocationsVC.h"
+#import "ResetPasswordVC.h"
+#import "UpdateProfileVC.h"
+#import "MessageVC.h"
+
+#endif

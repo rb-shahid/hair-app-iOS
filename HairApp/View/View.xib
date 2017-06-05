@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="9Ri-Dv-pLy" customClass="HeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t9s-oy-K8n">
+                    <rect key="frame" x="10" y="37" width="26" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="menu.png"/>
+                    <connections>
+                        <action selector="tap_menu:" destination="9Ri-Dv-pLy" eventType="touchUpInside" id="YoI-Eu-8At"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6hx-7U-JUG">
+                    <rect key="frame" x="0.0" y="7" width="77" height="77"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                    <connections>
+                        <action selector="tap_menu:" destination="9Ri-Dv-pLy" eventType="touchUpInside" id="tBt-T8-GRe"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" id="w0O-R2-lLI">
+                    <rect key="frame" x="100" y="24" width="119" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.13333333333333333" green="0.54509803921568623" blue="0.65098039215686276" alpha="1" colorSpace="deviceRGB"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bnt_menu_img" destination="t9s-oy-K8n" id="XQf-fK-ndm"/>
+                <outlet property="btn_menu" destination="6hx-7U-JUG" id="xaK-Ak-8fR"/>
+            </connections>
+            <point key="canvasLocation" x="89" y="755"/>
+        </view>
+        <view contentMode="scaleToFill" id="Bm1-3C-dRS" customClass="MenuView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" id="XB0-ck-Chs">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Pws-Or-7G0">
+                            <rect key="frame" x="-16" y="64" width="256" height="504"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </tableView>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gVd-eB-yap">
+                            <rect key="frame" x="8" y="21" width="25" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="menu.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dji-tM-kFH">
+                            <rect key="frame" x="204" y="32" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="cross.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YSp-Nk-zf0">
+                            <rect key="frame" x="145" y="-8" width="101" height="85"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="tapGeasture:" destination="Bm1-3C-dRS" eventType="touchUpInside" id="Xhl-DM-KLh"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.1764705882352941" blue="0.20000000000000001" alpha="1" colorSpace="deviceRGB"/>
+                </view>
+                <view alpha="0.20000000000000001" contentMode="scaleToFill" id="STs-6b-xr5">
+                    <rect key="frame" x="238" y="0.0" width="82" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="u4D-CX-eR9" appends="YES" id="JOU-Sj-D9f"/>
+                    </connections>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.074509803920000006" green="0.25882352939999997" blue="0.2901960784" alpha="1" colorSpace="deviceRGB"/>
+            <connections>
+                <outlet property="table" destination="Pws-Or-7G0" id="00p-pJ-Upc"/>
+            </connections>
+            <point key="canvasLocation" x="89" y="1135"/>
+        </view>
+        <tapGestureRecognizer id="u4D-CX-eR9">
+            <connections>
+                <action selector="tapGeasture:" destination="Bm1-3C-dRS" id="4TY-r9-Fnq"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="cross.png" width="46" height="46"/>
+        <image name="logo.png" width="387" height="133"/>
+        <image name="menu.png" width="78" height="61"/>
+    </resources>
+</document>

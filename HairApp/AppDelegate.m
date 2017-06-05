@@ -14,10 +14,101 @@
 
 @implementation AppDelegate
 
-
++(AppDelegate *)AppDelegate {
+    return
+    [UIApplication sharedApplication].delegate;
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    [self registerForNotification:application];
+    
+    UserSession *user =[[UserSession alloc]initWithSession];
+    
+    if (user.user_id != nil && launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
+        
+        UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        MessageVC *obj = [storybord instantiateViewControllerWithIdentifier:@"MessageVC"];
+        UINavigationController *navigationController=[[UINavigationController alloc]initWithRootViewController:obj];
+        self.window.rootViewController = navigationController;
+        [self.window makeKeyAndVisible];
+        
+        return YES;
+    }
+    
+    
+    [AppDelegate AppDelegate].menuTag = 100;
+    [SVProgressHUD  setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD  setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
+    [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginVC *obj = [storybord instantiateViewControllerWithIdentifier:@"LoginVC"];
+
+    if (user.user_id)
+    {
+        obj = [storybord instantiateViewControllerWithIdentifier:@"EdutationVC"];
+    }
+    
+    UINavigationController *navigationController=[[UINavigationController alloc]initWithRootViewController:obj];
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
     return YES;
+}
+
+
+- (void)registerForNotification:(UIApplication *)application {
+    
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        
+        [application registerForRemoteNotifications];
+        
+    } else {
+        
+        [application registerForRemoteNotificationTypes: (UIRemoteNotificationTypeNewsstandContentAvailability| UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Error:%@",error);
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString * token = [NSString stringWithFormat:@"%@", deviceToken];
+    //Format token as you need:
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    token = [token stringByReplacingOccurrencesOfString:@">" withString:@""];
+    token = [token stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    NSLog(@"%@",token);
+    
+//    device_register.php?user_id=#&regiistration_id=#
+    
+    UserSession *user =[[UserSession alloc]initWithSession];
+    if (user.user_id)
+    {
+        [WebServiceCalls POST:@"device_register.php" parameter:@{@"user_id":user.user_id, @"regiistration_id":token} completionBlock:^(id JSON, WebServiceResult result) {
+            
+            NSLog(@"%@", JSON);
+        }];
+    }
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    NSLog(@"%@", userInfo);
+    
+    UserSession *user =[[UserSession alloc]initWithSession];
+    
+    if (application.applicationState == UIApplicationStateActive && user.user_id != nil) {
+        
+        UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        MessageVC *obj = [storybord instantiateViewControllerWithIdentifier:@"MessageVC"];
+        UINavigationController *navigationController=[[UINavigationController alloc]initWithRootViewController:obj];
+        self.window.rootViewController = navigationController;
+        [self.window makeKeyAndVisible];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
